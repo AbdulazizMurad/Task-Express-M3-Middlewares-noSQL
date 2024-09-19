@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 const morgan = require("morgan");
 const cors = require("cors");
 const notFoundHandler = require("./middleWares/notFoundHandler");
+const errorHandler = require("./middleWares/errorHandler");
 dotenv.config();
 const PORT = process.env.PORT;
 
@@ -19,6 +20,7 @@ app.use(cors());
 app.use("/posts", postsRoutes);
 //middle wares that handles error in the route (path)
 app.use(notFoundHandler);
+app.use(errorHandler);
 //server
 app.listen(PORT, () => {
   console.log("The application is running on localhost:8000");
