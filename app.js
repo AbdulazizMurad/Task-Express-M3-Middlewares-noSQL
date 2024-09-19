@@ -7,6 +7,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const notFoundHandler = require("./middleWares/notFoundHandler");
 const errorHandler = require("./middleWares/errorHandler");
+const path = require("path"); // library in js
 dotenv.config();
 const PORT = process.env.PORT;
 
@@ -18,6 +19,8 @@ app.use(cors());
 
 //routes
 app.use("/posts", postsRoutes);
+app.use("/media", express.static(path.join(__dirname, "media")));
+
 //middle wares that handles error in the route (path)
 app.use(notFoundHandler);
 app.use(errorHandler);
